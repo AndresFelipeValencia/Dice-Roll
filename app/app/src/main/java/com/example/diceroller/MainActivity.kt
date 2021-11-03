@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         rollButton.setOnClickListener {
             rollDice()
             rollDiceOne()
+            rollDiceTwo()
         }
     }
 
@@ -42,6 +43,16 @@ class MainActivity : AppCompatActivity() {
         // Update the screen with the dice roll
         val resultTextViewOne: TextView = findViewById(R.id.textView2)
         resultTextViewOne.text = diceRollOne.toString()
+    }
+
+    private fun rollDiceTwo() {
+        // Create new Dice object with 6 sides and roll it
+        val diceTwo = Dice(6)
+        val diceRollTwo = diceTwo.roll()
+
+        // Update the screen with the dice roll
+        val resultTextViewTwo: TextView = findViewById(R.id.textView3)
+        resultTextViewTwo.text = diceRollTwo.toString()
     }
 
 }
