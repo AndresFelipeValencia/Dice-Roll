@@ -16,45 +16,39 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val rollButton: Button = findViewById(R.id.button)
-        rollButton.setOnClickListener {
-            rollDice()
-//            rollDiceOne()
-//            rollDiceTwo()
-        }
+        rollButton.setOnClickListener { rollDice() }
+
+        // Do a dice roll when the app starts
+        rollDice()
     }
 
     /**
      * Roll the dice and update the screen with the result.
      */
     private fun rollDice() {
-        // Create new Dice object with 6 sides and roll it
+        // Create new Dice object with 6 sides and roll the dice
         val dice = Dice(6)
         val diceRoll = dice.roll()
 
-        // Update the screen with the dice roll
+        // Find the ImageView in the layout
         val diceImage: ImageView = findViewById(R.id.imageView)
-        diceImage.setImageResource(R.drawable.dice_2)
+
+        // Determine which drawable resource ID to use based on the dice roll
+        val drawableResource = when (diceRoll) {
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
+        }
+
+        // Update the ImageView with the correct drawable resource ID
+        diceImage.setImageResource(drawableResource)
+
+        // Update the content description
+        diceImage.contentDescription = diceRoll.toString()
     }
-
-//    private fun rollDiceOne() {
-//        // Create new Dice object with 6 sides and roll it
-//        val diceOne = Dice(6)
-//        val diceRollOne = diceOne.roll()
-//
-//        // Update the screen with the dice roll
-//        val resultTextViewOne: TextView = findViewById(R.id.textView2)
-//        resultTextViewOne.text = diceRollOne.toString()
-//    }
-
-//    private fun rollDiceTwo() {
-//        // Create new Dice object with 6 sides and roll it
-//        val diceTwo = Dice(6)
-//        val diceRollTwo = diceTwo.roll()
-//
-//        // Update the screen with the dice roll
-//        val resultTextViewTwo: TextView = findViewById(R.id.textView3)
-//        resultTextViewTwo.text = diceRollTwo.toString()
-//    }
 
 }
 
